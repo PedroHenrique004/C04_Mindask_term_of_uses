@@ -3,171 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindAsk - Produtividade e Autoconhecimento</title>
+    <title>MindAsk | Produtividade e Autoconhecimento</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary: #5E5CE6; /* Apple Indigo */
+            --primary-dark: #4B49B8;
+            --bg-color: #F5F5F7; /* Apple Gray */
+            --surface: rgba(255, 255, 255, 0.7);
+            --text-main: #1D1D1F;
+            --text-light: #86868B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             line-height: 1.6;
-            background-color: #f9f9fb;
-            color: #333;
+            overflow-x: hidden;
         }
-        h1, h2, h3 {
-            color: #2C3E50;
+
+        /* Animated Background Blob */
+        .bg-blob {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(94,92,230,0.15) 0%, rgba(245,245,247,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 15s ease-in-out infinite;
         }
+        
+        .bg-blob-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(50,200,250,0.1) 0%, rgba(245,245,247,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 12s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, 50px) scale(1.05); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero */
         header {
             text-align: center;
+            padding: 100px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-badge {
+            background: rgba(94, 92, 230, 0.1);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #1D1D1F 0%, #5E5CE6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
             margin-bottom: 40px;
+        }
+
+        /* App Preview Mockup */
+        .app-preview {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto 80px;
+            border-radius: 45px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            overflow: hidden;
+            border: 8px solid #ffffff;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .app-preview:hover {
+            transform: translateY(-10px);
+        }
+
+        .app-preview img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Glassmorphism Section */
+        .glass-section {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .glass-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.8);
             padding: 30px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
         }
-        .cta {
-            background-color: #2C3E50;
-            color: white;
-            padding: 12px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            display: inline-block;
-            margin-top: 15px;
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(94, 92, 230, 0.1);
         }
-        section {
-            margin-bottom: 40px;
-            background-color: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .card {
-            border: 1px solid #eee;
-            padding: 15px;
-            border-radius: 10px;
+
+        .feature-icon {
+            font-size: 2.5rem;
             margin-bottom: 15px;
-            background-color: #fafafa;
+            display: inline-block;
         }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1D1D1F;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Terms Accordion Style */
+        .term-item {
+            margin-bottom: 20px;
+        }
+        .term-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .term-item p {
+            color: var(--text-light);
+        }
+
+        /* Footer */
         footer {
-            font-size: 0.9em;
-            color: #777;
-            border-top: 1px solid #ccc;
-            padding-top: 20px;
             text-align: center;
-            margin-top: 40px;
-            padding-bottom: 20px;
+            padding: 40px 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 60px;
+        }
+
+        .support-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .support-link:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .glass-section { padding: 30px 20px; }
+            header { padding-top: 60px; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>🧠 MindAsk</h1>
-    <p>Organize sua rotina, gerencie tarefas e reflita sobre o seu dia.</p>
-</header>
+    <div class="bg-blob"></div>
+    <div class="bg-blob-2"></div>
 
-<section id="sobre">
-    <h2>Sobre o App</h2>
-    <p>
-        O <strong>MindAsk</strong> é o seu companheiro diário para uma rotina mais equilibrada e produtiva. Através de uma interface limpa e intuitiva, unimos a organização do seu tempo com o poder da reflexão pessoal. E com a nossa Inteligência Artificial integrada, você recebe insights valiosos sobre o seu dia!
-    </p>
-</section>
+    <div class="container">
+        
+        <header>
+            <div class="hero-badge">Disponível na App Store</div>
+            <h1>MindAsk</h1>
+            <p>Seu companheiro diário para uma rotina mais equilibrada, produtiva e autoconsciente.</p>
+            
+            <div class="app-preview">
+                <!-- Fallback to a color if image is broken, but pointing to the copied asset -->
+                <img src="assets/screenshot_1.png" alt="MindAsk App Interface" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'350\' height=\'700\'><rect width=\'100%\' height=\'100%\' fill=\'%23e5e5ea\'/><text x=\'50%\' y=\'50%\' font-family=\'Arial\' font-size=\'20\' fill=\'%2386868b\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Screenshot do App</text></svg>'">
+            </div>
+        </header>
 
-<section id="problema">
-    <h2>O Problema</h2>
-    <div class="card">
-        <p>A correria do dia a dia faz com que as pessoas foquem apenas em "fazer", esquecendo do seu bem-estar mental, da organização sustentável e da reflexão sobre o que realmente importa.</p>
+        <section class="glass-section" id="solucao">
+            <h2>Por que o MindAsk?</h2>
+            <p style="color: var(--text-light); font-size: 1.1rem; max-width: 800px;">A correria do dia a dia faz com que foquemos apenas em "fazer", esquecendo do bem-estar mental. O MindAsk centraliza o essencial: gestão de tarefas inteligente combinada a um espaço seguro para autoconhecimento, guiado por Inteligência Artificial.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Gestão de Tarefas</h3>
+                    <p>Agrupe por categorias, defina prioridades e crie rotinas semanais que realmente funcionam para você.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Insights com IA</h3>
+                    <p>Avalie seu dia e registre reflexões. Nossa IA analisa seus pensamentos para gerar insights únicos de crescimento.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Notificações Essenciais</h3>
+                    <p>Seja lembrado das tarefas importantes e do seu momento diário de pausa, sem distrações desnecessárias.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-section" id="legal">
+            <h2>Privacidade & Termos</h2>
+            
+            <div class="term-item">
+                <h3>Uso da Plataforma</h3>
+                <p>O MindAsk é uma ferramenta de produtividade e autoconhecimento. O uso do aplicativo deve ser feito de forma responsável para sua organização pessoal.</p>
+            </div>
+            
+            <div class="term-item">
+                <h3>Segurança e Dados</h3>
+                <p>Sua privacidade é nossa prioridade. Suas tarefas, diários e notas são armazenados de forma segura e utilizados apenas para melhorar a sua experiência e gerar Insights localmente com nossa IA integrada. Não vendemos nem compartilhamos seus dados com terceiros.</p>
+            </div>
+            
+            <div class="term-item">
+                <h3>Limitação de Responsabilidade</h3>
+                <p>Os Insights gerados pela IA têm caráter exclusivamente motivacional e de apoio à reflexão pessoal, e não substituem, em hipótese alguma, aconselhamento psicológico ou médico profissional.</p>
+            </div>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <h3>Precisa de ajuda?</h3>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Fale conosco para suporte ou dúvidas.</p>
+                <a href="mailto:seu.email@exemplo.com" class="support-link">Entrar em Contato</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 MindAsk. Desenvolvido por Pedro Santos.</p>
+        </footer>
+
     </div>
-</section>
-
-<section id="solucao">
-    <h2>Nossa Solução</h2>
-    <div class="card">
-        <p>Centralizamos o essencial em um só lugar: gestão de tarefas e rotinas, combinada a um espaço seguro para diário e autoconhecimento, tudo guiado por insights inteligentes de IA.</p>
-    </div>
-</section>
-
-<section id="funcionalidades">
-    <h2>Funcionalidades</h2>
-
-    <div class="card">
-        <h3>📋 Gestão de Tarefas e Rotinas</h3>
-        <p>Crie tarefas individuais, agrupe-as por categorias e defina prioridades para o seu dia e semana.</p>
-    </div>
-
-    <div class="card">
-        <h3>🧠 Reflexão Diária com IA</h3>
-        <p>Dê uma nota para o seu dia, escreva suas reflexões e receba insights únicos de Inteligência Artificial para o seu autoconhecimento.</p>
-    </div>
-
-    <div class="card">
-        <h3>🔔 Notificações Personalizadas</h3>
-        <p>Nunca mais esqueça do que é importante. O MindAsk te lembra das suas tarefas e do seu momento diário de reflexão.</p>
-    </div>
-
-</section>
-
-<section id="publico">
-    <h2>Para quem é?</h2>
-    <p>
-        Pessoas que buscam melhorar a produtividade e a organização, sem abrir mão do autoconhecimento e do cuidado com a mente.
-    </p>
-</section>
-
-<section id="cta-final">
-    <h2>Pronto para começar?</h2>
-    <p>Baixe o MindAsk e dê o primeiro passo para dias mais organizados e conscientes.</p>
-</section>
-
-<section id="contato">
-    <h2>Contato</h2>
-    <p><strong>Email para suporte:</strong> seu.email@exemplo.com</p>
-</section>
-
-<section id="legal">
-    <h2>Termos de Uso e Privacidade</h2>
-
-    <div class="card">
-        <h3>Sobre o uso</h3>
-        <p>
-            O <strong>MindAsk</strong> é uma ferramenta de produtividade e autoconhecimento.
-            Ao utilizar o aplicativo, você concorda em usá-lo de forma responsável para sua organização pessoal.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>Responsabilidade</h3>
-        <p>
-            O aplicativo funciona como um facilitador de rotina. Os Insights de IA têm caráter motivacional e de apoio à reflexão, não substituindo aconselhamento psicológico ou profissional.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>Seus dados e privacidade</h3>
-        <p>
-            Levamos a sua privacidade a sério. Suas tarefas, diários e notas são armazenados de forma segura e são utilizados localmente (junto à integração da IA do aplicativo) apenas para melhorar a sua experiência e gerar seus Insights. Nós não vendemos nem compartilhamos seus dados pessoais com terceiros.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>Atualizações</h3>
-        <p>
-            O aplicativo pode passar por melhorias e mudanças ao longo do tempo,
-            assim como este documento de termos e privacidade.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>Contato</h3>
-        <p>
-            Em caso de dúvidas, relatar bugs ou falar conosco, envie um e-mail disponível na seção de contato.
-        </p>
-    </div>
-</section>
-
-<footer>
-    <p>&copy; 2026 - App MindAsk. Todos os direitos reservados.</p>
-</footer>
 
 </body>
 </html>
