@@ -107,25 +107,26 @@
             margin-bottom: 40px;
         }
 
-        /* App Preview Mockup */
-        .app-preview {
-            position: relative;
-            width: 100%;
-            max-width: 350px;
-            margin: 0 auto 80px;
-            border-radius: 45px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+        /* App Icon */
+        .app-icon {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 60px;
+            border-radius: 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             overflow: hidden;
-            border: 8px solid #ffffff;
+            background: white;
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        .app-preview:hover {
-            transform: translateY(-10px);
+        .app-icon:hover {
+            transform: translateY(-10px) scale(1.05);
         }
 
-        .app-preview img {
+        .app-icon img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
 
@@ -223,10 +224,19 @@
         }
 
         /* Carousel */
-        .carousel-container {
+        .carousel-wrapper {
             position: relative;
-            max-width: 350px;
+            max-width: 480px;
             margin: 0 auto 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 50px; /* Space for buttons */
+        }
+
+        .carousel-screen {
+            position: relative;
+            width: 300px;
             border-radius: 45px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.12);
             overflow: hidden;
@@ -253,31 +263,34 @@
             top: 50%;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.8);
-            border: none;
-            width: 40px;
-            height: 40px;
+            border: 1px solid rgba(0,0,0,0.05);
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             z-index: 10;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             backdrop-filter: blur(4px);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #1D1D1F;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
 
         .carousel-btn:hover {
             background: rgba(255, 255, 255, 1);
+            box-shadow: 0 8px 20px rgba(0, 159, 140, 0.2);
+            color: var(--primary);
         }
 
         .carousel-btn.prev {
-            left: 10px;
+            left: 0px;
         }
 
         .carousel-btn.next {
-            right: 10px;
+            right: 0px;
         }
 
         /* Responsive */
@@ -300,10 +313,9 @@
             <h1>MindAsk</h1>
             <p>Seu companheiro diário para uma rotina mais equilibrada, produtiva e autoconsciente.</p>
             
-            <!-- IMAGEM PRINCIPAL (HERO) -->
-            <!-- É AQUI QUE VOCÊ TROCA A IMAGEM PRINCIPAL: mude o src="assets/screenshot_1.png" -->
-            <div class="app-preview">
-                <img src="assets/screenshot_1.png" alt="MindAsk App Interface" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'350\' height=\'700\'><rect width=\'100%\' height=\'100%\' fill=\'%23e5e5ea\'/><text x=\'50%\' y=\'50%\' font-family=\'Arial\' font-size=\'20\' fill=\'%2386868b\' dominant-baseline=\'middle\' text-anchor=\'middle\'>Screenshot do App</text></svg>'">
+            <!-- ÍCONE DO APP -->
+            <div class="app-icon">
+                <img src="assets/app_icon.png" alt="MindAsk App Icon">
             </div>
         </header>
 
@@ -311,13 +323,15 @@
             <h2>Conheça o App</h2>
             <p style="color: var(--text-light); font-size: 1.1rem; max-width: 800px; margin-bottom: 30px;">Veja como o MindAsk funciona na prática.</p>
             
-            <div class="carousel-container">
+            <div class="carousel-wrapper">
                 <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-                <div class="carousel-track" id="carouselTrack">
-                    <div class="carousel-slide"><img src="assets/melhores/IMG_6510.PNG" alt="Galeria 1"></div>
-                    <div class="carousel-slide"><img src="assets/melhores/IMG_6514.PNG" alt="Galeria 2"></div>
-                    <div class="carousel-slide"><img src="assets/melhores/IMG_6515.PNG" alt="Galeria 3"></div>
-                    <div class="carousel-slide"><img src="assets/melhores/IMG_6516.PNG" alt="Galeria 4"></div>
+                <div class="carousel-screen">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide"><img src="assets/melhores/IMG_6510.PNG" alt="Galeria 1"></div>
+                        <div class="carousel-slide"><img src="assets/melhores/IMG_6514.PNG" alt="Galeria 2"></div>
+                        <div class="carousel-slide"><img src="assets/melhores/IMG_6515.PNG" alt="Galeria 3"></div>
+                        <div class="carousel-slide"><img src="assets/melhores/IMG_6516.PNG" alt="Galeria 4"></div>
+                    </div>
                 </div>
                 <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
             </div>
